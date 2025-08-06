@@ -1,0 +1,46 @@
+{
+    "name": "Mueveme - Mudanzas y Servicios Tarragona",
+    "short_name": "Mueveme",
+    "description": "Empresa líder en mudanzas, vaciado de pisos y limpieza profesional en Tarragona",
+    "start_url": "/inicio.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#f8c654",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "es",
+    "categories": ["business", "lifestyle"],
+    "icons": [
+        {
+            "src": "assets/favicon.ico",
+            "sizes": "16x16 32x32",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "assets/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "assets/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "assets/screenshot-desktop.jpg",
+            "sizes": "1280x720",
+            "type": "image/jpeg",
+            "form_factor": "wide"
+        },
+        {
+            "src": "assets/screenshot-mobile.jpg",
+            "sizes": "750x1334",
+            "type": "image/jpeg",
+            "form_factor": "narrow"
+        }
+    ]
+}

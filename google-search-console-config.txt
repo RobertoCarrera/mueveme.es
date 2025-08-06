@@ -1,0 +1,16 @@
+# Archivo de configuración para Google Search Console
+# Sustituir XXXXXX por el código real proporcionado por Google
+
+# Para verificación HTML
+# Colocar el archivo google[código].html en la raíz del sitio
+
+# Para verificación por meta tag, añadir en el <head> de todas las páginas:
+# <meta name="google-site-verification" content="XXXXXX" />
+
+# URLs importantes para enviar a Google Search Console:
+# https://mueveme.es/
+# https://mueveme.es/sitemap.xml
+# https://mueveme.es/servicios.html
+# https://mueveme.es/servicios/mudanzas-tarragona.html
+# https://mueveme.es/servicios/vaciado-pisos-tarragona.html
+# https://mueveme.es/contacto.html

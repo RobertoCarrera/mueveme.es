@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto de Mudanza - Mueveme</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f3;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #f8c654, #e6b347);
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 28px;
+        }
+        .header p {
+            color: #555;
+            margin: 5px 0 0;
+        }
+        .content {
+            padding: 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .budget-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .budget-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f8c654, #e6b347);
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .contact-info {
+            background: #ab9477;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .contact-info a {
+            color: #f8c654;
+            text-decoration: none;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🚚 Mueveme</h1>
+            <p>Tu empresa de confianza en Tarragona</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Hola [NOMBRE_CLIENTE],
+            </div>
+            
+            <p>Gracias por contactar con nosotros. Hemos preparado tu presupuesto personalizado para tu mudanza en Tarragona:</p>
+            
+            <div class="budget-details">
+                <div class="budget-item">
+                    <span>Tipo de mudanza:</span>
+                    <span>[TIPO_MUDANZA]</span>
+                </div>
+                <div class="budget-item">
+                    <span>Fecha solicitada:</span>
+                    <span>[FECHA_MUDANZA]</span>
+                </div>
+                <div class="budget-item">
+                    <span>Servicios incluidos:</span>
+                    <span>[SERVICIOS_INCLUIDOS]</span>
+                </div>
+                <div class="budget-item">
+                    <span>PRECIO TOTAL:</span>
+                    <span>[PRECIO_TOTAL]€</span>
+                </div>
+            </div>
+            
+            <p><strong>¿Qué incluye este precio?</strong></p>
+            <ul>
+                <li>✅ Embalaje profesional</li>
+                <li>✅ Desmontaje y montaje de muebles</li>
+                <li>✅ Transporte seguro</li>
+                <li>✅ Seguro de responsabilidad civil</li>
+                <li>✅ Equipo de profesionales</li>
+            </ul>
+            
+            <p>Este presupuesto es válido durante 15 días. Si tienes alguna pregunta o quieres confirmar la mudanza, no dudes en contactarnos.</p>
+            
+            <center>
+                <a href="tel:+34624027936" class="cta-button">📞 Llamar ahora: 624 027 936</a>
+            </center>
+        </div>
+        
+        <div class="contact-info">
+            <h3>Contacta con nosotros</h3>
+            <p>📞 Teléfono: <a href="tel:+34624027936">624 027 936</a></p>
+            <p>📧 Email: <a href="mailto:info@mueveme.es">info@mueveme.es</a></p>
+            <p>📍 Tarragona, España</p>
+            <p>🕒 Lun-Vie: 8:00-20:00 | Sáb: 9:00-18:00</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Mueveme - Mudanzas y Servicios Profesionales en Tarragona</p>
+            <p>Este email fue enviado porque solicitaste un presupuesto en nuestra web.</p>
+        </div>
+    </div>
+</body>
+</html>
