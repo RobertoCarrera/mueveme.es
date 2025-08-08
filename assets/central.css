@@ -1,3 +1,45 @@
+/* Limpieza de Sofás - Estilos movidos desde inline */
+.fabric-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.fabric-card-title {
+    color: #333;
+    margin-bottom: 1rem;
+}
+.fabric-card-title-yellow {
+    color: #f8c654;
+}
+.process-step {
+    text-align: center;
+    position: relative;
+}
+.process-step-icon {
+    width: 60px;
+    height: 60px;
+    background: #f8c654;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+}
+.testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    border-left: 4px solid #f8c654;
+}
+.testimonial-stars {
+    color: #f8c654;
+    font-size: 1.5rem;
+}
 /* Submenú vertical y alineado a la izquierda */
 .sub-menu {
   display: flex !important;
@@ -2969,11 +3011,11 @@ img[alt=""] {
     align-items: center;
 }
 
-.faq-answer {
-    padding: 1rem;
-    background: white;
-    border-top: 1px solid #e9ecef;
-}
+.faq-answer { display: none; }
+.faq-item.open .faq-answer { display: block; }
+.faq-question { cursor: pointer; background: none; border: none; font-size: 1.1rem; width: 100%; text-align: left; padding: 1rem 0; }
+.faq-icon { float: right; font-size: 1.3rem; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
 
 /* Business hours styling */
 .business-hours {

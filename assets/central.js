@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // FAQ Functionality
     initFAQ();
+    
+    // FAQ Accordion Logic
+    initFAQAccordion();
 });
 
 // Hero Slider Functions
@@ -156,6 +159,22 @@ function initSearchForm() {
                 showNotification(`Buscando: "${searchTerm}"`, 'info');
             }
         });
+    });
+}
+
+// FAQ accordion logic
+function initFAQAccordion() {
+    var faqs = document.querySelectorAll('.faq-item');
+    faqs.forEach(function(item) {
+        var btn = item.querySelector('.faq-question');
+        if (btn) {
+            btn.addEventListener('click', function() {
+                faqs.forEach(function(other) {
+                    if (other !== item) other.classList.remove('open');
+                });
+                item.classList.toggle('open');
+            });
+        }
     });
 }
 
