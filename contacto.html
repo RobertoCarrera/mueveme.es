@@ -199,7 +199,7 @@
                         <h2 class="form-header">Solicita tu Presupuesto</h2>
                         <p class="form-description">Rellena el formulario y te contactaremos en menos de 24 horas</p>
                         
-                        <form class="contact-form" action="#" method="post">
+                        <form id="contact-form" class="contact-form" action="#" method="post" data-endpoint="https://api.mueveme.es/contact">
                             <div class="form-columns">
                                 <div class="form-column">
                                     <label for="nombre">Nombre *</label>
@@ -235,6 +235,8 @@
                                 <div class="form-column form-column-full">
                                     <label for="mensaje">Mensaje *</label>
                                     <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos más detalles sobre tu proyecto..." required></textarea>
+                                    <!-- Honeypot anti-spam: campo oculto que los usuarios no ven -->
+                                    <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                                 </div>
                                 
                                 <div class="form-column form-column-full">
@@ -352,7 +354,37 @@
         </div>
     </footer>
 
-    <script src="assets/central.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('contact-form');
+                if (!form) return;
+                const endpoint = form.getAttribute('data-endpoint') || '/api/contact';
+
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const fd = new FormData(form);
+                    const payload = Object.fromEntries(fd.entries());
+
+                    try {
+                        const res = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const json = await res.json().catch(() => ({}));
+                        if (res.ok && json.ok) {
+                            alert('Mensaje enviado correctamente.');
+                            form.reset();
+                        } else {
+                            alert(json.error || 'No se pudo enviar. Inténtalo más tarde.');
+                        }
+                    } catch (err) {
+                        alert('Error de red. Inténtalo más tarde.');
+                    }
+                });
+            });
+        </script>
+        <script src="assets/central.js"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
