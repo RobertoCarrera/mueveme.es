@@ -366,7 +366,7 @@
                 </div>
                 
                 <div class="form-wrapper">
-                    <form class="contact-form" data-endpoint="https://api.mueveme.es/contact">
+                    <form class="contact-form" data-endpoint="https://api.mueveme.es/home-contact">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Nombre</label>
@@ -398,9 +398,10 @@
                                 <label>Mensaje</label>
                                 <textarea name="mensaje" placeholder="Cuéntanos más detalles sobre tu necesidad..." rows="4" required></textarea>
                             </div>
-                            
+                            <!-- Honeypot anti-spam -->
                             <!-- Honeypot anti-spam -->
                             <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+                            <input type="hidden" name="page" value="/inicio.html">
                             
                             <div class="form-group form-group-full form-submit">
                                 <button type="submit" class="btn-submit">Enviar solicitud</button>
