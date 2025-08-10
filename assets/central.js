@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Functionality
     initMobileMenu();
     
-    // Contact Form Functionality
-    initContactForm();
+    // Contact Forms Functionality (unified submit to API)
+    initContactForms();
     
     // Search Form Functionality
     initSearchForm();
@@ -105,43 +105,81 @@ function initMobileMenu() {
 }
 
 // Contact Form Functions
-function initContactForm() {
-    const form = document.querySelector('.contact-form');
-    if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Basic form validation
-        const requiredFields = form.querySelectorAll('[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.style.borderColor = '#ff6b6b';
-                isValid = false;
-            } else {
-                field.style.borderColor = '';
+function initContactForms() {
+    const forms = document.querySelectorAll('.contact-form');
+    if (!forms.length) return;
+
+    forms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Basic validation
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!String(field.value || '').trim()) {
+                    field.style.borderColor = '#ff6b6b';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            // Email validation
+            const emailField = form.querySelector('input[type="email"]');
+            if (emailField && emailField.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    emailField.style.borderColor = '#ff6b6b';
+                    isValid = false;
+                }
+            }
+
+            if (!isValid) {
+                showNotification('Por favor, completa todos los campos requeridos.', 'error');
+                return;
+            }
+
+            // Serialize all fields
+            const fd = new FormData(form);
+            const payload = Object.fromEntries(fd.entries());
+            // Add page source
+            if (!payload.page) payload.page = window.location.pathname;
+
+            // Endpoint
+            const endpoint = form.getAttribute('data-endpoint') || 'https://api.mueveme.es/contact';
+
+            // Submit state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+            }
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await res.json().catch(() => ({}));
+                if (res.ok && (json.ok === true || Object.keys(json).length === 0)) {
+                    showNotification('Mensaje enviado correctamente. Te contactaremos pronto.', 'success');
+                    form.reset();
+                } else {
+                    showNotification(json.error || 'No se pudo enviar. Inténtalo más tarde.', 'error');
+                }
+            } catch (err) {
+                showNotification('Error de red. Inténtalo más tarde.', 'error');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
             }
         });
-        
-        // Email validation
-        const emailField = form.querySelector('input[type="email"]');
-        if (emailField && emailField.value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailField.value)) {
-                emailField.style.borderColor = '#ff6b6b';
-                isValid = false;
-            }
-        }
-        
-        if (isValid) {
-            // Show success message
-            showNotification('Mensaje enviado correctamente. Te contactaremos pronto.', 'success');
-            form.reset();
-        } else {
-            showNotification('Por favor, completa todos los campos requeridos.', 'error');
-        }
     });
 }
 

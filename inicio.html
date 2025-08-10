@@ -366,26 +366,26 @@
                 </div>
                 
                 <div class="form-wrapper">
-                    <form class="contact-form">
+                    <form class="contact-form" data-endpoint="https://api.mueveme.es/contact">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" placeholder="Tu nombre" required>
+                                <input type="text" name="nombre" placeholder="Tu nombre" required>
                             </div>
                             
                             <div class="form-group">
                                 <label>Teléfono</label>
-                                <input type="tel" placeholder="Tu teléfono" required>
+                                <input type="tel" name="telefono" placeholder="Tu teléfono" required>
                             </div>
                             
                             <div class="form-group form-group-full">
                                 <label>Email</label>
-                                <input type="email" placeholder="Tu email" required>
+                                <input type="email" name="email" placeholder="Tu email" required>
                             </div>
                             
                             <div class="form-group form-group-full">
                                 <label>Servicio</label>
-                                <select required>
+                                <select name="servicio" required>
                                     <option value="">Selecciona un servicio</option>
                                     <option value="mudanza">Mudanza</option>
                                     <option value="vaciado">Vaciado de pisos</option>
@@ -396,8 +396,11 @@
                             
                             <div class="form-group form-group-full">
                                 <label>Mensaje</label>
-                                <textarea placeholder="Cuéntanos más detalles sobre tu necesidad..." rows="4"></textarea>
+                                <textarea name="mensaje" placeholder="Cuéntanos más detalles sobre tu necesidad..." rows="4" required></textarea>
                             </div>
+                            
+                            <!-- Honeypot anti-spam -->
+                            <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
                             
                             <div class="form-group form-group-full form-submit">
                                 <button type="submit" class="btn-submit">Enviar solicitud</button>

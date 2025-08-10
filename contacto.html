@@ -237,6 +237,7 @@
                                     <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos más detalles sobre tu proyecto..." required></textarea>
                                     <!-- Honeypot anti-spam: campo oculto que los usuarios no ven -->
                                     <input type="text" name="_hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;">
+                                    <input type="hidden" name="page" value="/contacto.html">
                                 </div>
                                 
                                 <div class="form-column form-column-full">
@@ -354,36 +355,7 @@
         </div>
     </footer>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('contact-form');
-                if (!form) return;
-                const endpoint = form.getAttribute('data-endpoint') || '/api/contact';
-
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const fd = new FormData(form);
-                    const payload = Object.fromEntries(fd.entries());
-
-                    try {
-                        const res = await fetch(endpoint, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        const json = await res.json().catch(() => ({}));
-                        if (res.ok && json.ok) {
-                            alert('Mensaje enviado correctamente.');
-                            form.reset();
-                        } else {
-                            alert(json.error || 'No se pudo enviar. Inténtalo más tarde.');
-                        }
-                    } catch (err) {
-                        alert('Error de red. Inténtalo más tarde.');
-                    }
-                });
-            });
-        </script>
+    <!-- Envío gestionado por assets/central.js (initContactForms) -->
         <script src="assets/central.js"></script>
     
     <!-- Bootstrap JS -->
