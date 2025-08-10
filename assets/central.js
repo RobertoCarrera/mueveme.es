@@ -146,6 +146,10 @@ function initContactForms() {
             const payload = Object.fromEntries(fd.entries());
             // Add page source
             if (!payload.page) payload.page = window.location.pathname;
+            // Ensure servicio has a sensible default if not provided
+            if (!payload.servicio || String(payload.servicio).trim() === '') {
+                payload.servicio = window.location.pathname.includes('contacto') ? 'Contacto' : 'General';
+            }
 
             // Endpoint
             const endpoint = form.getAttribute('data-endpoint') || 'https://api.mueveme.es/contact';
