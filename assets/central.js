@@ -109,9 +109,12 @@ function initContactForms() {
     const forms = document.querySelectorAll('.contact-form');
     if (!forms.length) return;
 
+    try { console.log('[forms] initContactForms -> found forms:', forms.length); } catch(_) {}
+
     forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            try { console.log('[forms] submit captured for', form.getAttribute('data-endpoint')); } catch(_) {}
 
             // Basic validation
             const requiredFields = form.querySelectorAll('[required]');
@@ -187,7 +190,7 @@ function initContactForms() {
                     submitBtn.textContent = originalText;
                 }
             }
-        });
+        }, { capture: true });
     });
 }
 
