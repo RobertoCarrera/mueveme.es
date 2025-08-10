@@ -165,7 +165,9 @@ function initContactForms() {
             try {
                 const res = await fetch(endpoint, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    // No explicit Content-Type to keep it a simple request (avoid preflight)
+                    // Browser will default to text/plain; Lambda parses JSON string fine
+                    mode: 'cors',
                     body: JSON.stringify(payload)
                 });
                 const json = await res.json().catch(() => ({}));
@@ -173,9 +175,11 @@ function initContactForms() {
                     showNotification('Mensaje enviado correctamente. Te contactaremos pronto.', 'success');
                     form.reset();
                 } else {
+                    console.warn('Envio formulario fallido', { status: res.status, json });
                     showNotification(json.error || 'No se pudo enviar. Inténtalo más tarde.', 'error');
                 }
             } catch (err) {
+                console.error('Error de red al enviar formulario', err);
                 showNotification('Error de red. Inténtalo más tarde.', 'error');
             } finally {
                 if (submitBtn) {
