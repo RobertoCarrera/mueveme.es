@@ -2,18 +2,21 @@ User-agent: *
 Allow: /
 
 # Bloquear archivos innecesarios para SEO
-Disallow: /assets/
-Disallow: /*.css
-Disallow: /*.js
 Disallow: /README.md
 
-# Permitir acceso a CSS y JS específicos importantes
-Allow: /assets/central.css
-Allow: /assets/central.js
+# Permitir recursos estáticos (CSS/JS/imagenes) para que Google renderice correctamente
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
 Allow: /assets/favicon.ico
 
 # Sitemap
 Sitemap: https://mueveme.es/sitemap.xml
 
-# Crawl-delay para bots específicos
+# Crawl-delay (suave)
 Crawl-delay: 1
